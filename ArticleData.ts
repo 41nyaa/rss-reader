@@ -1,7 +1,6 @@
 
 export type ArticleData = {
-    id       : number;
-    title    : string;
-    url      : string;
-    category : string;
+//    id      : number;
+    title   : string;
+    link    : string;
 }

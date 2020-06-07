@@ -1,29 +1,18 @@
-import React, {FC} from 'react';
-import { Text, TouchableOpacity, StyleSheet } from "react-native";
-import {ArticleData} from './ArticleData'
-;
-export type ArticleProps = {
-    data : ArticleData;
-};
-const Article : FC<ArticleProps> = ({data}) => {
+import React, { FC } from 'react';
+import { View, Button } from 'react-native';
+import { WebView } from 'react-native-webview';
+import { useNavigation, useRoute, RouteProp } from '@react-navigation/native';
+import { RootStackParamList } from './App';
 
+export type ArticleRouteProps = RouteProp<RootStackParamList,'Article'>;
+
+const Article: FC = () => {
+    const navigation = useNavigation();
+    const params = useRoute<ArticleRouteProps>().params;
     return (
-        <TouchableOpacity style={styles.item}>
-            <Text style={styles.title}>{data.title}</Text>
-        </TouchableOpacity>
+            <WebView source={{uri: params.link}}>
+            </WebView>
     );
 }
-
-const styles = StyleSheet.create({
-    item: {
-        backgroundColor: '#f9c2ff',
-        padding: 10,
-        marginVertical: 4,
-        marginHorizontal: 4,
-    },
-    title :{
-        fontSize : 24
-    }
-});
 
 export default Article;
